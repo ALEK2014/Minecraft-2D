@@ -8,20 +8,21 @@ def rysuj_swiat_minecraft(swiat_minecraft, screen):
         for x, blok in enumerate(wiersz):
             pozycja_x = x*ROZMIAR_BLOKU
             pozycja_y = y*ROZMIAR_BLOKU
-            
-            kolor = KOLORY[blok]
-            blok1 = pygame.rect(pozycja_x, pozycja_y)
 
+            kolor = KOLORY[blok]
+            blok1 = pygame.Rect(pozycja_x, pozycja_y, ROZMIAR_BLOKU, ROZMIAR_BLOKU)
+            pygame.draw.rect(screen, kolor, blok1)
+            pygame.draw.rect(screen, (100, 100, 100), blok1, 1)
 def main_minecraft():
     pygame.init()
-    screen = pygame.display.set_mode((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
+    ekran = pygame.display.set_mode((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
     ikona = pygame.image.load("grafiki/1770744660_b833e63dfda26aefeb986083bc106177_1.png")
     pygame.display.set_icon(ikona)
     pygame.display.set_caption('Minecraft 2D')
 
     zegarek_GARMIN = pygame.time.Clock()
 
-    swiat_minecraft = generuj_swiat_minecraft()
+    swiat = generuj_swiat_minecraft()
 
     gra = True
     while gra:
@@ -32,11 +33,16 @@ def main_minecraft():
             if zdarzenie.type == pygame.QUIT:
                 gra = False
         
+            rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
+            pygame.display.flip()
+            zegarek_GARMIN.tick(60)
+        
         
     
 
 if __name__ == "__main__":
     main_minecraft()
+
     
 
 
