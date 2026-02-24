@@ -15,7 +15,7 @@ KOLORY = {
     "kamien":(128, 128, 128)
 }
 
-POZIOM_TERENU = 8
+POZIOM_TERENU = 16
 
 
 

@@ -12,7 +12,7 @@ def rysuj_swiat_minecraft(swiat_minecraft, screen):
             kolor = KOLORY[blok]
             blok1 = pygame.Rect(pozycja_x, pozycja_y, ROZMIAR_BLOKU, ROZMIAR_BLOKU)
             pygame.draw.rect(screen, kolor, blok1)
-            pygame.draw.rect(screen, (100, 100, 100), blok1, 1)
+
 def main_minecraft():
     pygame.init()
     ekran = pygame.display.set_mode((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
