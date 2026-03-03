@@ -37,7 +37,12 @@ def generator_terenu_A(swiat):
                 swiat[y][x] = "ziemia"
             else:
                 swiat[y][x] = "kamien"
+            
     return swiat
+
+def nudne_generowanie_drzewa(swiat, x, y):
+    for pien in range(1, 4):
+        ny = y - pien
 
 
 

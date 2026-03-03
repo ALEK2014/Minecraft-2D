@@ -12,7 +12,9 @@ KOLORY = {
     "powietrze": (135, 206, 235),
     "trawa": (34, 160, 34),
     "ziemia":(139, 69, 19),
-    "kamien":(128, 128, 128)
+    "kamien":(128, 128, 128),
+    "liscie":(0, 145, 0),
+    "drewno":(150, 69, 10)
 }
 
 POZIOM_TERENU = 16
