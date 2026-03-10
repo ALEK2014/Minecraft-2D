@@ -42,14 +42,28 @@ def generator_terenu_A(swiat):
 
 def nudne_generowanie_drzewa(swiat, x, y):
     for pien in range(1, 4):
-        ny = y - pien
+        ny_blokow = y - pien
+        if 0 <= ny_blokow < BLOKI_Y:
+            swiat[y][x] = "drewno"
+    for dy, szerokosc in [(-5, 1), (-4, 2), (-3, 3)]:
+        for dx in range(-szerokosc, szerokosc + 1):
+            ny_blokow = y + dy
+            nx_blokow = x + dx
+            if 0 <= ny_blokow < BLOKI_Y:
+                if swiat[ny_blokow][nx_blokow] != "drewno":
+                    swiat[ny_blokow][nx_blokow] = "liscie"
 
-
-
+def nudne_osadzenie_drzewa(swiat):
+    for y in range(BLOKI_Y):
+        for x in range(2, BLOKI_X - 2):
+            if swiat[y][x] == "trawa":
+               nudne_generowanie_drzewa(swiat, x, y)
+            break
 
 def generuj_swiat_minecraft():
     swiat = stworzenie_pustego_swiata()
     swiat = generator_terenu_A(swiat)
+    swiat = nudne_osadzenie_drzewa(swiat)
     return swiat
 
 
