@@ -33,9 +33,9 @@ def main_minecraft():
             if zdarzenie.type == pygame.QUIT:
                 gra = False
         
-            rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
-            pygame.display.flip()
-            zegarek_GARMIN.tick(60)
+        rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
+        pygame.display.flip()
+        zegarek_GARMIN.tick(60)
         
         
     
