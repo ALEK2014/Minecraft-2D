@@ -19,7 +19,7 @@ def generator_terenu_A(swiat):
 
     liczba_losowan = BLOKI_X // KROK + 2
 
-    punkty = [POZIOM_TERENU + random.randint(-3, 3) for losowanie in range(liczba_losowan)]
+    punkty = [POZIOM_TERENU + random.randint(-2, 2) for losowanie in range(liczba_losowan)]
 #interpolacja
     for x in range(BLOKI_X):
         segment = x // KROK
@@ -54,10 +54,12 @@ def nudne_generowanie_drzewa(swiat, x, y):
                     swiat[ny_blokow][nx_blokow] = "liscie"
 
 def nudne_osadzenie_drzewa(swiat):
-    for y in range(BLOKI_Y):
-        for x in range(4 , BLOKI_X - 4):
+    for x in range(4,BLOKI_X - 4):
+        for y in range(4 , BLOKI_Y):
             if swiat[y][x] == "trawa":
-               nudne_generowanie_drzewa(swiat, x, y)
+               losowe = random.randint(1, 15)
+               if losowe == 5:
+                nudne_generowanie_drzewa(swiat, x, y)
                break
     return swiat
 
