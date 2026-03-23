@@ -53,6 +53,14 @@ def nudne_generowanie_drzewa(swiat, x, y):
                 if swiat[ny_blokow][nx_blokow] != "drewno":
                     swiat[ny_blokow][nx_blokow] = "liscie"
 
+def Macieja_osadzanie_wungla(swiat):
+    for x in range(BLOKI_X):
+        for y in range(BLOKI_Y):
+            if swiat[y][x] == "kamien":
+                losowe = random.randint(1, 1)
+                if losowe == 1:
+                    swiat[y][x] == "wungiel"
+    return swiat
 def nudne_osadzenie_drzewa(swiat):
     for x in range(4,BLOKI_X - 4):
         for y in range(4 , BLOKI_Y):
@@ -67,23 +75,27 @@ def generuj_swiat_minecraft():
     swiat = stworzenie_pustego_swiata()
     swiat = generator_terenu_A(swiat)
     swiat = nudne_osadzenie_drzewa(swiat)
+    swiat = Macieja_osadzanie_wungla(swiat)
     return swiat
 
 
 if __name__ == "__main__":
     generuj_swiat_minecraft()
-#     swiat = generuj_swiat_minecraft()
+    swiat = generuj_swiat_minecraft()
 
-# SYMBOLE = {
-#     "powietrze": ".",
-#     "trawa": "#",
-#     "ziemia":"=",
-#    nt(liczba_losowan) "kamien":"@"       
-#     }
+SYMBOLE = {
+    "powietrze": ".",
+    "trawa": "#",
+    "ziemia":"=",
+    "kamien":"@",  
+    "liscie":"!",
+    "drewno":"$",
+    "wungiel":"*"
+    }
 
-# for wiersz in swiat:
-#     linia = ""
-#     for blok in wiersz:
-#         linia += SYMBOLE[blok]
-#     print(linia)
+for wiersz in swiat:
+    linia = ""
+    for blok in wiersz:
+        linia += SYMBOLE[blok]
+    print(linia)
 

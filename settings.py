@@ -14,7 +14,8 @@ KOLORY = {
     "ziemia":(139, 69, 19),
     "kamien":(128, 128, 128),
     "liscie":(0, 145, 0),
-    "drewno":(150, 69, 10)
+    "drewno":(150, 69, 10),
+    "wungiel":(0, 0, 0)
 }
 
 POZIOM_TERENU = 16
