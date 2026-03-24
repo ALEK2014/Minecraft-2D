@@ -15,7 +15,10 @@ KOLORY = {
     "kamien":(128, 128, 128),
     "liscie":(0, 145, 0),
     "drewno":(150, 69, 10),
-    "wungiel":(0, 0, 0)
+    "wungiel":(0, 0, 0),
+    "diaxy":(108, 186, 252),
+    "zelazo":(254, 239, 213),
+    "red_stone":(255, 0, 0)
 }
 
 POZIOM_TERENU = 16

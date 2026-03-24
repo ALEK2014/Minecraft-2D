@@ -53,14 +53,6 @@ def nudne_generowanie_drzewa(swiat, x, y):
                 if swiat[ny_blokow][nx_blokow] != "drewno":
                     swiat[ny_blokow][nx_blokow] = "liscie"
 
-def Macieja_osadzanie_wungla(swiat):
-    for x in range(BLOKI_X):
-        for y in range(BLOKI_Y):
-            if swiat[y][x] == "kamien":
-                losowe = random.randint(1, 1)
-                if losowe == 1:
-                    swiat[y][x] == "wungiel"
-    return swiat
 def nudne_osadzenie_drzewa(swiat):
     for x in range(4,BLOKI_X - 4):
         for y in range(4 , BLOKI_Y):
@@ -71,11 +63,25 @@ def nudne_osadzenie_drzewa(swiat):
                break
     return swiat
 
+def generowanie_rud_Maczeja_i_Alka(swiat):
+# R.I.P Macieja_generowanie_wungla i Alka_generowanie_diaxa zm. 24 03 2026
+    for x in range(BLOKI_X):
+        for y in range(BLOKI_Y):
+            if swiat[y][x] == "kamien":
+                if random.randint(1, 200) == 1:
+                    swiat[y][x] = "zelazo"
+                if random.randint(1, 999999) == 1:
+                    swiat[y][x] = "red_stone"
+                if random.randint(1, 60) == 1:
+                    swiat[y][x] = "wungiel"
+                if random.randint(1, 1000) == 1:
+                    swiat[y][x] = "diaxy"
+    return swiat
 def generuj_swiat_minecraft():
     swiat = stworzenie_pustego_swiata()
     swiat = generator_terenu_A(swiat)
     swiat = nudne_osadzenie_drzewa(swiat)
-    swiat = Macieja_osadzanie_wungla(swiat)
+    swiat = generowanie_rud_Maczeja_i_Alka(swiat)
     return swiat
 
 
@@ -83,19 +89,19 @@ if __name__ == "__main__":
     generuj_swiat_minecraft()
     swiat = generuj_swiat_minecraft()
 
-SYMBOLE = {
-    "powietrze": ".",
-    "trawa": "#",
-    "ziemia":"=",
-    "kamien":"@",  
-    "liscie":"!",
-    "drewno":"$",
-    "wungiel":"*"
-    }
+# SYMBOLE = {
+#     "powietrze": ".",
+#     "trawa": "#",
+#     "ziemia":"=",
+#     "kamien":"@",  
+#     "liscie":"!",
+#     "drewno":"$",
+#     "wungiel":"*"
+#     }
 
-for wiersz in swiat:
-    linia = ""
-    for blok in wiersz:
-        linia += SYMBOLE[blok]
-    print(linia)
+# for wiersz in swiat:
+#     linia = ""
+#     for blok in wiersz:
+#         linia += SYMBOLE[blok]
+#     print(linia)
 
