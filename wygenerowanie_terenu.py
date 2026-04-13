@@ -76,6 +76,7 @@ def generowanie_rud_Maczeja_i_Alka(swiat):
                     swiat[y][x] = "wungiel"
                 if random.randint(1, 1000) == 1:
                     swiat[y][x] = "diaxy"
+
     return swiat
 def generuj_swiat_minecraft():
     swiat = stworzenie_pustego_swiata()

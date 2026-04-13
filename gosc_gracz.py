@@ -1,5 +1,5 @@
 import pygame
-from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU
+from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU, PRENDKOSC
 
 class Gracz:
     def __init__(self):
@@ -9,4 +9,15 @@ class Gracz:
         self.y = (POZIOM_TERENU - 2) * ROZMIAR_BLOKU - self.wysokosc
 
     def ruch(self):
-        
+        klawisze = pygame.key.get_pressed()
+        if klawisze[pygame.K_LEFT]:
+            self.x -= PRENDKOSC
+        if klawisze[pygame.K_RIGHT]:
+            self.x += PRENDKOSC
+    
+    def jestem(self, screen):
+        pygame.draw.rect((0, 0, 0))
+
+
+
+
