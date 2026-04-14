@@ -70,7 +70,7 @@ def generowanie_rud_Maczeja_i_Alka(swiat):
             if swiat[y][x] == "kamien":
                 if random.randint(1, 200) == 1:
                     swiat[y][x] = "zelazo"
-                if random.randint(1, 999999) == 1:
+                if random.randint(1, 9999) == 1:
                     swiat[y][x] = "red_stone"
                 if random.randint(1, 60) == 1:
                     swiat[y][x] = "wungiel"

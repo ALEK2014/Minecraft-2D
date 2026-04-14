@@ -20,7 +20,7 @@ KOLORY = {
     "zelazo":(254, 239, 213),
     "red_stone":(255, 0, 0)
 }
-
+PRENDKOSC = 4.394
 POZIOM_TERENU = 16
 
 

@@ -1,7 +1,7 @@
 from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
-
+from gosc_gracz import Gracz
 
 def rysuj_swiat_minecraft(swiat_minecraft, screen):
     for y, wiersz in enumerate(swiat_minecraft):
@@ -23,7 +23,7 @@ def main_minecraft():
     zegarek_GARMIN = pygame.time.Clock()
 
     swiat = generuj_swiat_minecraft()
-
+    gracz = Gracz()
     gra = True
     while gra:
         for zdarzenie in pygame.event.get():
@@ -34,8 +34,11 @@ def main_minecraft():
                 gra = False
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
+        gracz.jestem(ekran)
+        gracz.ruch()
         pygame.display.flip()
         zegarek_GARMIN.tick(60)
+        
         
         
     
