@@ -1,4 +1,4 @@
-from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU
+from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
