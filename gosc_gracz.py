@@ -10,18 +10,24 @@ class Gracz:
         self.prendkosc_y = 0
         self.na_ziemi_ksienzyca = False
 
-
-    def ruch(self):
+    def ruch(self, swiat):
         klawisze = pygame.key.get_pressed()
         if klawisze[pygame.K_LEFT]:
             self.x -= PRENDKOSC
         if klawisze[pygame.K_RIGHT]:
             self.x += PRENDKOSC
         if klawisze[pygame.K_SPACE]:
-            self.prendkosc_y = SILA_SKOKU
+            if self.na_ziemi_ksienzyca == True:
+                self.prendkosc_y = SILA_SKOKU
 
+#grawitacja mario
         self.prendkosc_y += GRAWITACJA
         self.y += int(self.prendkosc_y)
+#kolizja z ziemią mario 
+        dotykanie_y = self.y // ROZMIAR_BLOKU
+        dotykanie_x = self.x // ROZMIAR_BLOKU
+        
+        
     
     def jestem(self, screen):
         pygame.draw.rect(screen, (0, 196, 224), (self.x + 5, self.y + 12, self.szerokosc - 10, self.wysokosc - 18))
