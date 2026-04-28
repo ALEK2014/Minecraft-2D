@@ -35,7 +35,7 @@ def main_minecraft():
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
         gracz.jestem(ekran)
-        gracz.ruch()
+        gracz.ruch(swiat)
         pygame.display.flip()
         zegarek_GARMIN.tick(60)
         
