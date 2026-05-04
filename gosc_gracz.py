@@ -25,12 +25,15 @@ class Gracz:
         self.y += int(self.prendkosc_y)
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
-        dotykanie_x = self.x // ROZMIAR_BLOKU
+        dotykanie_x_lewa = max(0, min(self.x // ROZMIAR_BLOKU, len(swiat[0]) -1))
+        dotykanie_x_prawa = max(0, min(self.x + self.szerokosc -1 , len(swiat[0]) -1))
         if dotykanie_y < len(swiat):
-            blok = swiat[dotykanie_y][min(dotykanie_x, len(swiat[0]), -1)]
-            if blok != "powietrze":
+            blok_lewy = swiat[dotykanie_y][dotykanie_x_lewa]
+            blok_prawy = swiat[dotykanie_y][dotykanie_x_prawa]
+            if blok_lewy != "powietrze" or blok_prawy != "powietrze":
                 self.na_ziemi_ksienzyca = True
                 self.prendkosc_y = 0
+                self.y = dotykanie_y * ROZMIAR_BLOKU - self.wysokosc
             else:
                 self.na_ziemi_ksienzyca = False
     
