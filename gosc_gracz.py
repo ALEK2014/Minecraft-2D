@@ -16,6 +16,16 @@ class Gracz:
             self.x -= PRENDKOSC
         if klawisze[pygame.K_RIGHT]:
             self.x += PRENDKOSC
+        
+#       self.x = max(0, min(self.x ))
+        for wysokosc in [self.y +2, self.y + self.wysokosc // 2, self.y + self.wysokosc - 2]:
+            cy = max(0, min(int(wysokosc) // ROZMIAR_BLOKU, len(swiat) -1))
+            cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            cx_prawy = max(0, min(int(self.x +self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            if swiat[cy][cx_lewy] != "powietrze":
+                self.x = (cx_lewy + 1) * ROZMIAR_BLOKU
+            if swiat[cy][cx_prawy] != "powietrze":
+                self.x = (cx_prawy + 1) * ROZMIAR_BLOKU - self.szerokosc
         if klawisze[pygame.K_SPACE]:
             if self.na_ziemi_ksienzyca == True:
                 self.prendkosc_y = SILA_SKOKU
