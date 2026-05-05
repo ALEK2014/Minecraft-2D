@@ -25,7 +25,7 @@ class Gracz:
             if swiat[cy][cx_lewy] != "powietrze":
                 self.x = (cx_lewy + 1) * ROZMIAR_BLOKU
             if swiat[cy][cx_prawy] != "powietrze":
-                self.x = (cx_prawy + 1) * ROZMIAR_BLOKU - self.szerokosc
+                self.x = (cx_prawy) * ROZMIAR_BLOKU - self.szerokosc
 
         if klawisze[pygame.K_SPACE]:
             if self.na_ziemi_ksienzyca == True:
