@@ -17,7 +17,7 @@ class Gracz:
         if klawisze[pygame.K_RIGHT]:
             self.x += PRENDKOSC
         
-#       self.x = max(0, min(self.x ))
+        self.x = max(0, min(self.x, SZEROKOSC_EKRANU - self.szerokosc))
         for wysokosc in [self.y +2, self.y + self.wysokosc // 2, self.y + self.wysokosc - 2]:
             cy = max(0, min(int(wysokosc) // ROZMIAR_BLOKU, len(swiat) -1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
@@ -26,6 +26,7 @@ class Gracz:
                 self.x = (cx_lewy + 1) * ROZMIAR_BLOKU
             if swiat[cy][cx_prawy] != "powietrze":
                 self.x = (cx_prawy + 1) * ROZMIAR_BLOKU - self.szerokosc
+
         if klawisze[pygame.K_SPACE]:
             if self.na_ziemi_ksienzyca == True:
                 self.prendkosc_y = SILA_SKOKU
@@ -35,8 +36,9 @@ class Gracz:
         self.y += int(self.prendkosc_y)
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
-        dotykanie_x_lewa = max(0, min(self.x // ROZMIAR_BLOKU, len(swiat[0]) -1))
-        dotykanie_x_prawa = max(0, min(self.x + self.szerokosc -1 , len(swiat[0]) -1))
+        dotykanie_x_lewa = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+        dotykanie_x_prawa = max(0, min(int(self.x + self.szerokosc) -1 , len(swiat[0]) -1))
+
         if dotykanie_y < len(swiat):
             blok_lewy = swiat[dotykanie_y][dotykanie_x_lewa]
             blok_prawy = swiat[dotykanie_y][dotykanie_x_prawa]
@@ -46,6 +48,8 @@ class Gracz:
                 self.y = dotykanie_y * ROZMIAR_BLOKU - self.wysokosc
             else:
                 self.na_ziemi_ksienzyca = False
+        else:
+            self.na_ziemi_ksienzyca = False
     
     def jestem(self, screen):
         pygame.draw.rect(screen, (0, 196, 224), (self.x + 5, self.y + 12, self.szerokosc - 10, self.wysokosc - 18))
