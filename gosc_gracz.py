@@ -37,7 +37,7 @@ class Gracz:
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
         dotykanie_x_lewa = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
-        dotykanie_x_prawa = max(0, min(int(self.x + self.szerokosc) -1 , len(swiat[0]) -1))
+        dotykanie_x_prawa = max(0, min(int(self.x + self.szerokosc - 1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
 
         if dotykanie_y < len(swiat):
             blok_lewy = swiat[dotykanie_y][dotykanie_x_lewa]
