@@ -28,7 +28,7 @@ class Gracz:
                 self.x = (cx_prawy) * ROZMIAR_BLOKU - self.szerokosc
 
         if self.na_ziemi_ksienzyca:
-            cy_stupki = max(0, min(int(self.y + wysokosc - 2) // ROZMIAR_BLOKU, len(swiat) - 1))
+            cy_stupki = max(0, min(int(self.y + self.wysokosc - 2) // ROZMIAR_BLOKU, len(swiat) - 1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             cx_prawy = max(0, min(int(self.x +self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             if swiat[cy_stupki][cx_lewy] != "powietrze" or swiat[cy_stupki][cx_prawy] != "powietrze":
@@ -44,6 +44,10 @@ class Gracz:
 #grawitacja mario
         self.prendkosc_y += GRAWITACJA
         self.y += int(self.prendkosc_y)
+
+        if self.prendkosc_y < 0:
+            glowa_y = max(0, min(int(self.y) // ROZMIAR_BLOKU, len(swiat) - 1))
+
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
         dotykanie_x_lewa = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
