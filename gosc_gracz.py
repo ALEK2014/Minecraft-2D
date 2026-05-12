@@ -18,7 +18,7 @@ class Gracz:
             self.x += PRENDKOSC
         
         self.x = max(0, min(self.x, SZEROKOSC_EKRANU - self.szerokosc))
-        for wysokosc in [self.y +2, self.y + self.wysokosc // 2, self.y + self.wysokosc - 10]:
+        for wysokosc in [self.y +2, self.y + self.wysokosc // 2]:
             cy = max(0, min(int(wysokosc) // ROZMIAR_BLOKU, len(swiat) -1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             cx_prawy = max(0, min(int(self.x +self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
@@ -26,6 +26,16 @@ class Gracz:
                 self.x = (cx_lewy + 1) * ROZMIAR_BLOKU
             elif swiat[cy][cx_prawy] != "powietrze":
                 self.x = (cx_prawy) * ROZMIAR_BLOKU - self.szerokosc
+
+        if self.na_ziemi_ksienzyca:
+            cy_stupki = max(0, min(int(self.y + wysokosc - 2) // ROZMIAR_BLOKU, len(swiat) - 1))
+            cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            cx_prawy = max(0, min(int(self.x +self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            if swiat[cy_stupki][cx_lewy] != "powietrze" or swiat[cy_stupki][cx_prawy] != "powietrze":
+                self.y -= ROZMIAR_BLOKU
+
+
+                
 
         if klawisze[pygame.K_SPACE]:
             if self.na_ziemi_ksienzyca == True:
@@ -48,8 +58,8 @@ class Gracz:
                 self.y = dotykanie_y * ROZMIAR_BLOKU - self.wysokosc
             else:
                 self.na_ziemi_ksienzyca = False
-        # else:
-        #     self.na_ziemi_ksienzyca = False
+        else:
+            self.na_ziemi_ksienzyca = False
     
     def jestem(self, screen):
         pygame.draw.rect(screen, (0, 196, 224), (self.x + 5, self.y + 12, self.szerokosc - 15, self.wysokosc - 18))
