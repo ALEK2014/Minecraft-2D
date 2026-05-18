@@ -32,6 +32,7 @@ def main_minecraft():
                     gra = False
             if zdarzenie.type == pygame.QUIT:
                 gra = False
+            
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
         gracz.jestem(ekran)

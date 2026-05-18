@@ -47,7 +47,11 @@ class Gracz:
 
         if self.prendkosc_y < 0:
             glowa_y = max(0, min(int(self.y) // ROZMIAR_BLOKU, len(swiat) - 1))
-
+            cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            cx_prawy = max(0, min(int(self.x + self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
+            if swiat[glowa_y][cx_lewy] != "powietrze" or swiat[glowa_y][cx_prawy] != "powietrze":
+                self.prendkosc_y = 0
+                self.y -= (glowa_y + 1) // ROZMIAR_BLOKU
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
         dotykanie_x_lewa = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
