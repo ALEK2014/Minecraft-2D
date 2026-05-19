@@ -32,7 +32,19 @@ def main_minecraft():
                     gra = False
             if zdarzenie.type == pygame.QUIT:
                 gra = False
-            
+            if zdarzenie.type == pygame.MOUSEBUTTONDOWN:
+                if zdarzenie.button == 1:
+                    myszka_y, myszka_x = zdarzenie.pos
+                    # print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
+
+                    mbx = myszka_x // ROZMIAR_BLOKU
+                    mby = myszka_y // ROZMIAR_BLOKU
+                    print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")
+
+                    if (mby >= 0 or mby < 0) and (mbx >= 0 or mbx < 0):
+
+
+
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
         gracz.jestem(ekran)
