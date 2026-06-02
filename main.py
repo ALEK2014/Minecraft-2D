@@ -41,8 +41,8 @@ def main_minecraft():
                     mby = myszka_y // ROZMIAR_BLOKU
                     print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")
 
-                    if (mby >= 0 or mby < 0) and (mbx >= 0 or mbx < 0):
-
+                    if 0 <= mby < len(swiat) and 0 <= mbx < len(swiat[0]):
+                        swiat[mby][mbx] == "powietrze"
 
 
         
