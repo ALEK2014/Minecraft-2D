@@ -24,6 +24,7 @@ def main_minecraft():
 
     swiat = generuj_swiat_minecraft()
     gracz = Gracz()
+    patelnia_blokow = [nazwa for nazwa in KOLORY]
     gra = True
     while gra:
         for zdarzenie in pygame.event.get():
@@ -34,16 +35,35 @@ def main_minecraft():
                 gra = False
             if zdarzenie.type == pygame.MOUSEBUTTONDOWN:
                 if zdarzenie.button == 1:
-                    myszka_y, myszka_x = zdarzenie.pos
-                    # print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
+                    myszka_x, myszka_y = pygame.mouse.get_pos()
+                    #print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
 
                     mbx = myszka_x // ROZMIAR_BLOKU
                     mby = myszka_y // ROZMIAR_BLOKU
-                    print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")
+                    #print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")
 
                     if 0 <= mby < len(swiat) and 0 <= mbx < len(swiat[0]):
-                        swiat[mby][mbx] == "powietrze"
+                        swiat[mby][mbx] = "powietrze"
 
+                if zdarzenie.button == 3:
+
+                    myszka_x, myszka_y = pygame.mouse.get_pos()
+                    #print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
+
+                    mbx = myszka_x // ROZMIAR_BLOKU
+                    mby = myszka_y // ROZMIAR_BLOKU
+                    #print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")                    
+                    
+
+                    if 0 <= mby < len(swiat) and 0 <= mbx < len(swiat[0]) and swiat[mby][mbx] == "powietrze":
+
+                        # blok_x = mbx * ROZMIAR_BLOKU
+                        # blok_y = mby * ROZMIAR_BLOKU
+                        
+                        swiat[mby][mbx] = "ziemia"
+
+                        
+                            
 
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
