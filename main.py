@@ -24,7 +24,8 @@ def main_minecraft():
 
     swiat = generuj_swiat_minecraft()
     gracz = Gracz()
-    patelnia_blokow = [nazwa for nazwa in KOLORY]
+    patelnia_blokow = [nazwa for nazwa in KOLORY if nazwa != "powietrze"]
+    wybrany_bloczek = patelnia_blokow[0]
     gra = True
     while gra:
         for zdarzenie in pygame.event.get():
@@ -60,7 +61,7 @@ def main_minecraft():
                         # blok_x = mbx * ROZMIAR_BLOKU
                         # blok_y = mby * ROZMIAR_BLOKU
                         
-                        swiat[mby][mbx] = "ziemia"
+                        swiat[mby][mbx] = wybrany_bloczek
 
                         
                             
