@@ -1,0 +1,2 @@
+import pygame
+from wygenerowanie_terenu import generator_terenu_A
