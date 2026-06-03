@@ -1,4 +1,4 @@
-from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA
+from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
@@ -32,6 +32,10 @@ def main_minecraft():
             if zdarzenie.type == pygame.KEYDOWN:
                 if zdarzenie.key == pygame.K_ESCAPE:
                     gra = False
+                if zdarzenie.key in PRZYPISANIE_KLAWISZY:
+                    numerek = PRZYPISANIE_KLAWISZY[zdarzenie.key]
+                    if numerek < len(patelnia_blokow):
+                        wybrany_bloczek = patelnia_blokow[numerek]
             if zdarzenie.type == pygame.QUIT:
                 gra = False
             if zdarzenie.type == pygame.MOUSEBUTTONDOWN:
@@ -46,6 +50,7 @@ def main_minecraft():
                     if 0 <= mby < len(swiat) and 0 <= mbx < len(swiat[0]):
                         swiat[mby][mbx] = "powietrze"
 
+            
                 if zdarzenie.button == 3:
 
                     myszka_x, myszka_y = pygame.mouse.get_pos()

@@ -1,3 +1,4 @@
+import pygame
 # ustawienia gry
 SZEROKOSC_EKRANU = 1216
 WYSOKOSC_EKRANU = 800
@@ -20,6 +21,18 @@ KOLORY = {
     "diaxy":(108, 186, 252),
     "zelazo":(254, 239, 213),
     "red_stone":(255, 0, 0)
+}
+
+PRZYPISANIE_KLAWISZY = {
+    pygame.K_1: 0,
+    pygame.K_2: 1,
+    pygame.K_3: 2,
+    pygame.K_4: 3,
+    pygame.K_5: 4,
+    pygame.K_6: 5,
+    pygame.K_7: 6,
+    pygame.K_8: 7,
+    pygame.K_9: 8
 }
 PRENDKOSC = 4.394
 POZIOM_TERENU = 16
