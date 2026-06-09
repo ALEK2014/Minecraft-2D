@@ -2,6 +2,7 @@ from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, G
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
+from interface import hotbar_minecraft_mace
 
 def rysuj_swiat_minecraft(swiat_minecraft, screen):
     for y, wiersz in enumerate(swiat_minecraft):
@@ -52,7 +53,6 @@ def main_minecraft():
 
             
                 if zdarzenie.button == 3:
-
                     myszka_x, myszka_y = pygame.mouse.get_pos()
                     #print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
 
@@ -75,8 +75,10 @@ def main_minecraft():
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
         gracz.jestem(ekran)
         gracz.ruch(swiat)
+        hotbar_minecraft_mace(ekran)
         pygame.display.flip()
         zegarek_GARMIN.tick(60)
+        
         
         
         
