@@ -28,6 +28,7 @@ class Gracz:
                 self.x = (cx_prawy) * ROZMIAR_BLOKU - self.szerokosc
 
         if self.na_ziemi_ksienzyca:
+
             cy_stupki = max(0, min(int(self.y + self.wysokosc - 2) // ROZMIAR_BLOKU, len(swiat) - 1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             cx_prawy = max(0, min(int(self.x +self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))

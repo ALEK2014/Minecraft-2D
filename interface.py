@@ -2,7 +2,6 @@ import pygame
 from wygenerowanie_terenu import generator_terenu_A
 from settings import ROZMIAR_BLOKU, KOLORY, PRZYPISANIE_KLAWISZY, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU
 
-
 def hotbar_minecraft_mace(ekran):
     shtm = 736
     khtm = shtm / 9
@@ -12,6 +11,9 @@ def hotbar_minecraft_mace(ekran):
     obramowanie = 3
     hotbar_pasek = pygame.Rect(punkt_Maciejax - obramowanie, punkt_Maciejay - obramowanie, shtm + obramowanie * 2, khtm + obramowanie * 2)
     przezroczystosc_lol_pl = 150
-    tlo = pygame.Surface()
-    pygame.draw.rect(ekran, (58, 58, 58, 50), hotbar_pasek)
+    tlo = pygame.Surface(hotbar_pasek.size)
+    tlo.fill((55,55,55))
+    tlo.set_alpha(przezroczystosc_lol_pl)
+    ekran.blit(tlo, hotbar_pasek.topleft)
+    pygame.draw.rect(ekran, (0,0,0), hotbar_pasek, obramowanie)
 
