@@ -24,6 +24,9 @@ def hotbar_minecraft_mace(ekran, bloczki, aha_czyli_to_ty):
         pygame.draw.rect(ekran, (150,150,150), kratka_z_blokiem_sadzonym, obramowanie)
         if len(bloczki) > minecraft_og:
             lokory = KOLORY[bloczki[minecraft_og]]
-            print(lokory)
             blok_sadzony = kratka_z_blokiem_sadzonym.inflate(-40, -40)
             pygame.draw.rect(ekran, lokory, blok_sadzony)
+
+    nununummerek = bloczki.index(aha_czyli_to_ty)
+    the_decision_of_your_life = pygame.Rect(punkt_Maciejax - khtm*9 - khtm * -nununummerek, punkt_Maciejay , khtm, khtm)
+    pygame.draw.rect(ekran, (200, 200, 200), the_decision_of_your_life, obramowanie + 4)
