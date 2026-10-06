@@ -75,7 +75,7 @@ def main_minecraft():
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
         gracz.jestem(ekran)
         gracz.ruch(swiat)
-        hotbar_minecraft_mace(ekran)
+        hotbar_minecraft_mace(ekran, bloczki= patelnia_blokow, aha_czyli_to_ty= wybrany_bloczek)
         pygame.display.flip()
         zegarek_GARMIN.tick(60)
         
