@@ -4,7 +4,9 @@ import pygame
 from gosc_gracz import Gracz
 from interface import hotbar_minecraft_mace
 
-def rysuj_swiat_minecraft(swiat_minecraft, screen):
+def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX):
+    pierwsza_starozytna_kolumna_ekranu = monimeraX // ROZMIAR_BLOKU
+    ostatnia_wspolczesna_kolumna_ekranu = ROZMIAR_BLOKU * monimeraX
     for y, wiersz in enumerate(swiat_minecraft):
         for x, blok in enumerate(wiersz):
             pozycja_x = x*ROZMIAR_BLOKU

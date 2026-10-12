@@ -1,12 +1,12 @@
-from settings import BLOKI_X, BLOKI_Y, POZIOM_TERENU
+from settings import SZEROKOSC_SWIATA, BLOKI_Y, POZIOM_TERENU
 import random
 def stworzenie_pustego_swiata():
     swiat = [] 
-    #BLOKI_X = SZEROKOSC_EKRANU // ROZMIAR_BLOKU
+    #SZEROKOSC_SWIATA = SZEROKOSC_EKRANU // ROZMIAR_BLOKU
     #BLOKI_Y = WYSOKOSC_EKRANU // ROZMIAR_BLOKU
     for y in range(BLOKI_Y):
         wiersz = []
-        for x in range(BLOKI_X):
+        for x in range(SZEROKOSC_SWIATA):
             wiersz.append("powietrze")
         swiat.append(wiersz)
 
@@ -17,11 +17,11 @@ def generator_terenu_A(swiat):
 
     KROK = 4
 
-    liczba_losowan = BLOKI_X // KROK + 2
+    liczba_losowan = SZEROKOSC_SWIATA // KROK + 2
 
     punkty = [POZIOM_TERENU + random.randint(-2, 2) for losowanie in range(liczba_losowan)]
 #interpolacja
-    for x in range(BLOKI_X):
+    for x in range(SZEROKOSC_SWIATA):
         segment = x // KROK
         essa = (x % KROK) / KROK
         essa_plynne = essa*essa*(3 - 2*essa)
@@ -54,7 +54,7 @@ def nudne_generowanie_drzewa(swiat, x, y):
                     swiat[ny_blokow][nx_blokow] = "liscie"
 
 def nudne_osadzenie_drzewa(swiat):
-    for x in range(4,BLOKI_X - 4):
+    for x in range(4,SZEROKOSC_SWIATA - 4):
         for y in range(4 , BLOKI_Y):
             if swiat[y][x] == "trawa":
                losowe = random.randint(1, 15)
@@ -65,7 +65,7 @@ def nudne_osadzenie_drzewa(swiat):
 
 def generowanie_rud_Maczeja_i_Alka(swiat):
 # R.I.P Macieja_generowanie_wungla i Alka_generowanie_diaxa zm. 24 03 2026
-    for x in range(BLOKI_X):
+    for x in range(SZEROKOSC_SWIATA):
         for y in range(BLOKI_Y):
             if swiat[y][x] == "kamien":
                 if random.randint(1, 200) == 1:
