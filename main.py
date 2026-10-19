@@ -1,14 +1,15 @@
-from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY
+from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY, BLOKI_X
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
 from interface import hotbar_minecraft_mace
 
 def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX):
-    pierwsza_starozytna_kolumna_ekranu = monimeraX // ROZMIAR_BLOKU
-    ostatnia_wspolczesna_kolumna_ekranu = ROZMIAR_BLOKU * monimeraX
+    pierwsza_starozytna_kolumna_ekranu = monimeraX // ROZMIAR_BLOKU 
+    ostatnia_wspolczesna_kolumna_ekranu = min(pierwsza_starozytna_kolumna_ekranu + BLOKI_X + 1 , len(swiat_minecraft[0]) - 1)
     for y, wiersz in enumerate(swiat_minecraft):
-        for x, blok in enumerate(wiersz):
+        for x in range(pierwsza_starozytna_kolumna_ekranu, ostatnia_wspolczesna_kolumna_ekranu + 1):
+            blok = wiersz[x]
             pozycja_x = x*ROZMIAR_BLOKU
             pozycja_y = y*ROZMIAR_BLOKU
 
@@ -31,6 +32,7 @@ def main_minecraft():
     wybrany_bloczek = patelnia_blokow[0]
     gra = True
     while gra:
+        monimeraX = int(gracz.x) + gracz.szerokosc // 2 - SZEROKOSC_EKRANU // 2
         for zdarzenie in pygame.event.get():
             if zdarzenie.type == pygame.KEYDOWN:
                 if zdarzenie.key == pygame.K_ESCAPE:
@@ -74,7 +76,7 @@ def main_minecraft():
                             
 
         
-        rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran)
+        rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran, monimeraX= monimeraX)
         gracz.jestem(ekran)
         gracz.ruch(swiat)
         hotbar_minecraft_mace(ekran, bloczki= patelnia_blokow, aha_czyli_to_ty= wybrany_bloczek)
