@@ -43,7 +43,7 @@ def main_minecraft():
                         wybrany_bloczek = patelnia_blokow[numerek]
             if zdarzenie.type == pygame.QUIT:
                 gra = False
-            if zdarzenie.type == pygame.MOUSEBUTTONDOWN:
+            if zdarzenie.type == pygame.MOUSEBUTTONDOWN: 
                 if zdarzenie.button == 1:
                     myszka_x, myszka_y = pygame.mouse.get_pos()
                     #print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")

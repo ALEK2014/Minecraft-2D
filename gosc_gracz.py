@@ -5,7 +5,7 @@ class Gracz:
     def __init__(self):
         self.szerokosc = 32
         self.wysokosc = 60
-        self.x = SZEROKOSC_EKRANU // 2
+        self.x = SZEROKOSC_SWIATA * ROZMIAR_BLOKU // 2
         self.y = (POZIOM_TERENU - 2) * ROZMIAR_BLOKU - self.wysokosc
         self.prendkosc_y = 0
         self.na_ziemi_ksienzyca = False
