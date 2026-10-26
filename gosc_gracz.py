@@ -1,5 +1,5 @@
 import pygame
-from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU, PRENDKOSC, GRAWITACJA, SILA_SKOKU
+from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU, PRENDKOSC, GRAWITACJA, SILA_SKOKU, SZEROKOSC_SWIATA
 
 class Gracz:
     def __init__(self):
@@ -17,7 +17,7 @@ class Gracz:
         if klawisze[pygame.K_RIGHT]:
             self.x += PRENDKOSC
         
-        self.x = max(0, min(self.x, SZEROKOSC_EKRANU - self.szerokosc))
+        self.x = max(0, min(self.x, len(swiat[0])*ROZMIAR_BLOKU - self.szerokosc))
         for wysokosc in [self.y +2, self.y + self.wysokosc // 2]:
             cy = max(0, min(int(wysokosc) // ROZMIAR_BLOKU, len(swiat) -1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
