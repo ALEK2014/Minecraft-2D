@@ -68,11 +68,11 @@ class Gracz:
     
     def jestem(self, screen, monimeraX):
         x = self.x - monimeraX
-        pygame.draw.rect(screen, (0, 196, 224), (self.x + 5, self.y + 12, self.szerokosc - 15, self.wysokosc - 18))
-        pygame.draw.rect(screen, (0, 0, 156), (self.x + 5, self.y + 40, self.szerokosc - 15, self.wysokosc //2 - 10))
-        pygame.draw.rect(screen, (0, 196, 224), (self.x - 3, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
-        pygame.draw.rect(screen, (0, 196, 224), (self.x + 22, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
-        pygame.draw.rect(screen, (245, 224, 209), (self.x + 5, self.y - 3, self.szerokosc - 15, self.wysokosc - 45))
+        pygame.draw.rect(screen, (0, 196, 224), (x + 5, self.y + 12, self.szerokosc - 15, self.wysokosc - 18))
+        pygame.draw.rect(screen, (0, 0, 156), (x + 5, self.y + 40, self.szerokosc - 15, self.wysokosc //2 - 10))
+        pygame.draw.rect(screen, (0, 196, 224), (x - 3, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
+        pygame.draw.rect(screen, (0, 196, 224), (x + 22, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
+        pygame.draw.rect(screen, (245, 224, 209), (x + 5, self.y - 3, self.szerokosc - 15, self.wysokosc - 45))
 
 
 

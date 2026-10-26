@@ -10,7 +10,7 @@ def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX):
     for y, wiersz in enumerate(swiat_minecraft):
         for x in range(pierwsza_starozytna_kolumna_ekranu, ostatnia_wspolczesna_kolumna_ekranu + 1):
             blok = wiersz[x]
-            pozycja_x = x*ROZMIAR_BLOKU
+            pozycja_x = x*ROZMIAR_BLOKU - monimeraX
             pozycja_y = y*ROZMIAR_BLOKU
 
             kolor = KOLORY[blok]
@@ -48,7 +48,7 @@ def main_minecraft():
                     myszka_x, myszka_y = pygame.mouse.get_pos()
                     #print(f"Lewy przycisk myszy kliknięty na pozycji: {myszka_y}, {myszka_x}")
 
-                    mbx = myszka_x // ROZMIAR_BLOKU
+                    mbx = myszka_x // ROZMIAR_BLOKU 
                     mby = myszka_y // ROZMIAR_BLOKU
                     #print(f"Lewy przycisk myszy kliknięty na pozycji: {mby}, {mbx}")
 
@@ -77,7 +77,7 @@ def main_minecraft():
 
         
         rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran, monimeraX= monimeraX)
-        gracz.jestem(ekran)
+        gracz.jestem(ekran, monimeraX)
         gracz.ruch(swiat)
         hotbar_minecraft_mace(ekran, bloczki= patelnia_blokow, aha_czyli_to_ty= wybrany_bloczek)
         pygame.display.flip()
