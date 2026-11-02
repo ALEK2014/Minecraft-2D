@@ -66,8 +66,9 @@ class Gracz:
         else:
             self.na_ziemi_ksienzyca = False
     
-    def jestem(self, screen, monimeraX):
+    def jestem(self, screen, monimeraX, MonimeraY):
         x = self.x - monimeraX
+        y = self.y - MonimeraY
         pygame.draw.rect(screen, (0, 196, 224), (x + 5, self.y + 12, self.szerokosc - 15, self.wysokosc - 18))
         pygame.draw.rect(screen, (0, 0, 156), (x + 5, self.y + 40, self.szerokosc - 15, self.wysokosc //2 - 10))
         pygame.draw.rect(screen, (0, 196, 224), (x - 3, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))

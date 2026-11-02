@@ -1,10 +1,10 @@
-from settings import SZEROKOSC_SWIATA, BLOKI_Y, POZIOM_TERENU
+from settings import SZEROKOSC_SWIATA, WYSOKOSC_SWIATA, POZIOM_TERENU, WYSOKOSC_SWIATA
 import random
 def stworzenie_pustego_swiata():
     swiat = [] 
     #SZEROKOSC_SWIATA = SZEROKOSC_EKRANU // ROZMIAR_BLOKU
-    #BLOKI_Y = WYSOKOSC_EKRANU // ROZMIAR_BLOKU
-    for y in range(BLOKI_Y):
+    #WYSOKOSC_SWIATA = WYSOKOSC_SWIATA // ROZMIAR_BLOKU
+    for y in range(WYSOKOSC_SWIATA):
         wiersz = []
         for x in range(SZEROKOSC_SWIATA):
             wiersz.append("powietrze")
@@ -28,7 +28,7 @@ def generator_terenu_A(swiat):
         p1 = punkty[segment]
         p2 = punkty[segment + 1]
         wysokosc = round(p1 + essa_plynne*(p2 - p1))
-        for y in range(BLOKI_Y):
+        for y in range(WYSOKOSC_SWIATA):
             if y < wysokosc:
                 swiat[y][x] = "powietrze"
             elif y == wysokosc:
@@ -43,19 +43,19 @@ def generator_terenu_A(swiat):
 def nudne_generowanie_drzewa(swiat, x, y):
     for pien in range(1, 4):
         ny_blokow = y - pien
-        if 0 <= ny_blokow < BLOKI_Y:
+        if 0 <= ny_blokow < WYSOKOSC_SWIATA:
             swiat[ny_blokow][x] = "drewno"
     for dy, szerokosc in [(-5, 1), (-4, 2), (-3, 3)]:
         for dx in range(-szerokosc, szerokosc + 1):
             ny_blokow = y + dy
             nx_blokow = x + dx
-            if 0 <= ny_blokow < BLOKI_Y:
+            if 0 <= ny_blokow < WYSOKOSC_SWIATA:
                 if swiat[ny_blokow][nx_blokow] != "drewno":
                     swiat[ny_blokow][nx_blokow] = "liscie"
 
 def nudne_osadzenie_drzewa(swiat):
     for x in range(4,SZEROKOSC_SWIATA - 4):
-        for y in range(4 , BLOKI_Y):
+        for y in range(4 , WYSOKOSC_SWIATA):
             if swiat[y][x] == "trawa":
                losowe = random.randint(1, 15)
                if losowe == 5:
@@ -66,7 +66,7 @@ def nudne_osadzenie_drzewa(swiat):
 def generowanie_rud_Maczeja_i_Alka(swiat):
 # R.I.P Macieja_generowanie_wungla i Alka_generowanie_diaxa zm. 24 03 2026
     for x in range(SZEROKOSC_SWIATA):
-        for y in range(BLOKI_Y):
+        for y in range(WYSOKOSC_SWIATA):
             if swiat[y][x] == "kamien":
                 if random.randint(1, 200) == 1:
                     swiat[y][x] = "zelazo"

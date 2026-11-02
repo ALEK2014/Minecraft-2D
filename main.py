@@ -1,17 +1,21 @@
-from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY, BLOKI_X
+from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY, BLOKI_X, BLOKI_Y
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
 from interface import hotbar_minecraft_mace
 
-def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX):
+def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX, monimeraY):
     pierwsza_starozytna_kolumna_ekranu = monimeraX // ROZMIAR_BLOKU 
     ostatnia_wspolczesna_kolumna_ekranu = min(pierwsza_starozytna_kolumna_ekranu + BLOKI_X + 1 , len(swiat_minecraft[0]) - 1)
-    for y, wiersz in enumerate(swiat_minecraft):
+    pierwszy_starozytny_wiersz_ekranu = monimeraY // ROZMIAR_BLOKU
+    ostatni_wspolczesny_wiersz_ekranu = min(pierwszy_starozytny_wiersz_ekranu + BLOKI_Y + 1 , len(swiat_minecraft[0]) - 1)
+    for y in range(pierwszy_starozytny_wiersz_ekranu, ostatni_wspolczesny_wiersz_ekranu + 1):
+        wiersz = swiat_minecraft[y]
         for x in range(pierwsza_starozytna_kolumna_ekranu, ostatnia_wspolczesna_kolumna_ekranu + 1):
             blok = wiersz[x]
+
             pozycja_x = x*ROZMIAR_BLOKU  - monimeraX
-            pozycja_y = y*ROZMIAR_BLOKU
+            pozycja_y = y*ROZMIAR_BLOKU - monimeraY
 
             kolor = KOLORY[blok]
             blok1 = pygame.Rect(pozycja_x, pozycja_y, ROZMIAR_BLOKU, ROZMIAR_BLOKU)
@@ -33,6 +37,7 @@ def main_minecraft():
     gra = True
     while gra:
         monimeraX = int(gracz.x) + gracz.szerokosc // 2 - SZEROKOSC_EKRANU // 2
+        monimeraY = int(gracz.y) + gracz.wysokosc // 2 - WYSOKOSC_EKRANU // 2
         for zdarzenie in pygame.event.get():
             if zdarzenie.type == pygame.KEYDOWN:
                 if zdarzenie.key == pygame.K_ESCAPE:
@@ -76,8 +81,8 @@ def main_minecraft():
                             
 
         
-        rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran, monimeraX= monimeraX)
-        gracz.jestem(ekran, monimeraX)
+        rysuj_swiat_minecraft(swiat_minecraft=swiat, screen=ekran, monimeraX= monimeraX, monimeraY=monimeraY)
+        gracz.jestem(ekran, monimeraX, monimeraY)
         gracz.ruch(swiat)
         hotbar_minecraft_mace(ekran, bloczki= patelnia_blokow, aha_czyli_to_ty= wybrany_bloczek)
         pygame.display.flip()
