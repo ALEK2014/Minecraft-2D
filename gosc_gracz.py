@@ -1,5 +1,5 @@
 import pygame
-from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU, PRENDKOSC, GRAWITACJA, SILA_SKOKU, SZEROKOSC_SWIATA
+from settings import SZEROKOSC_EKRANU, WYSOKOSC_EKRANU, ROZMIAR_BLOKU, POZIOM_TERENU, PRENDKOSC, GRAWITACJA, SILA_SKOKU, SZEROKOSC_SWIATA, MAX_PRENDKOSC_SPADANIA
 
 class Gracz:
     def __init__(self):
@@ -39,16 +39,16 @@ class Gracz:
                 self.prendkosc_y = SILA_SKOKU
 
 #grawitacja mario
-        self.prendkosc_y += GRAWITACJA
+        self.prendkosc_y = min(self.prendkosc_y + GRAWITACJA, MAX_PRENDKOSC_SPADANIA)
         self.y += int(self.prendkosc_y)
-
+        
         if self.prendkosc_y < 0:
             glowa_y = max(0, min(int(self.y) // ROZMIAR_BLOKU, len(swiat) - 1))
             cx_lewy = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             cx_prawy = max(0, min(int(self.x + self.szerokosc -1) // ROZMIAR_BLOKU, len(swiat[0]) -1))
             if swiat[glowa_y][cx_lewy] != "powietrze" or swiat[glowa_y][cx_prawy] != "powietrze":
                 self.prendkosc_y = 0
-                self.y -= (glowa_y + 1) // ROZMIAR_BLOKU
+                self.y = (glowa_y + 1) * ROZMIAR_BLOKU
 #kolizja z ziemią mario 
         dotykanie_y = (self.y + self.wysokosc) // ROZMIAR_BLOKU
         dotykanie_x_lewa = max(0, min(int(self.x) // ROZMIAR_BLOKU, len(swiat[0]) -1))
@@ -69,11 +69,11 @@ class Gracz:
     def jestem(self, screen, monimeraX, MonimeraY):
         x = self.x - monimeraX
         y = self.y - MonimeraY
-        pygame.draw.rect(screen, (0, 196, 224), (x + 5, self.y + 12, self.szerokosc - 15, self.wysokosc - 18))
-        pygame.draw.rect(screen, (0, 0, 156), (x + 5, self.y + 40, self.szerokosc - 15, self.wysokosc //2 - 10))
-        pygame.draw.rect(screen, (0, 196, 224), (x - 3, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
-        pygame.draw.rect(screen, (0, 196, 224), (x + 22, self.y + 12, self.szerokosc - 24 , self.wysokosc - 36))
-        pygame.draw.rect(screen, (245, 224, 209), (x + 5, self.y - 3, self.szerokosc - 15, self.wysokosc - 45))
+        pygame.draw.rect(screen, (0, 196, 224), (x + 5, y + 12, self.szerokosc - 15, self.wysokosc - 18))
+        pygame.draw.rect(screen, (0, 0, 156), (x + 5, y + 40, self.szerokosc - 15, self.wysokosc //2 - 10))
+        pygame.draw.rect(screen, (0, 196, 224), (x - 3, y + 12, self.szerokosc - 24 , self.wysokosc - 36))
+        pygame.draw.rect(screen, (0, 196, 224), (x + 22, y + 12, self.szerokosc - 24 , self.wysokosc - 36))
+        pygame.draw.rect(screen, (245, 224, 209), (x + 5, y - 3, self.szerokosc - 15, self.wysokosc - 45))
 
 
 
