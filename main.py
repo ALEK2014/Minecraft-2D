@@ -8,7 +8,7 @@ def rysuj_swiat_minecraft(swiat_minecraft, screen, monimeraX, monimeraY):
     pierwsza_starozytna_kolumna_ekranu = monimeraX // ROZMIAR_BLOKU 
     ostatnia_wspolczesna_kolumna_ekranu = min(pierwsza_starozytna_kolumna_ekranu + BLOKI_X + 1 , len(swiat_minecraft[0]) - 1)
     pierwszy_starozytny_wiersz_ekranu = monimeraY // ROZMIAR_BLOKU
-    ostatni_wspolczesny_wiersz_ekranu = min(pierwszy_starozytny_wiersz_ekranu + BLOKI_Y + 1 , len(swiat_minecraft[0]) - 1)
+    ostatni_wspolczesny_wiersz_ekranu = min(pierwszy_starozytny_wiersz_ekranu + BLOKI_Y + 1 , len(swiat_minecraft) - 1)
     for y in range(pierwszy_starozytny_wiersz_ekranu, ostatni_wspolczesny_wiersz_ekranu + 1):
         wiersz = swiat_minecraft[y]
         for x in range(pierwsza_starozytna_kolumna_ekranu, ostatnia_wspolczesna_kolumna_ekranu + 1):
