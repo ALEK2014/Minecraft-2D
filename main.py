@@ -1,4 +1,4 @@
-from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY, BLOKI_X, BLOKI_Y
+from settings import KOLORY, ROZMIAR_BLOKU, WYSOKOSC_EKRANU, SZEROKOSC_EKRANU, GRAWITACJA, PRZYPISANIE_KLAWISZY, BLOKI_X, BLOKI_Y, SZEROKOSC_SWIATA, WYSOKOSC_SWIATA
 from wygenerowanie_terenu import generuj_swiat_minecraft
 import pygame
 from gosc_gracz import Gracz
@@ -37,7 +37,12 @@ def main_minecraft():
     gra = True
     while gra:
         monimeraX = int(gracz.x) + gracz.szerokosc // 2 - SZEROKOSC_EKRANU // 2
+        monimeraX = min(monimeraX, SZEROKOSC_SWIATA * ROZMIAR_BLOKU - SZEROKOSC_EKRANU )
+        monimeraX = max(0, monimeraX)
+        # 63392 pixeli 
         monimeraY = int(gracz.y) + gracz.wysokosc // 2 - WYSOKOSC_EKRANU // 2
+        monimeraY = min(monimeraY, WYSOKOSC_SWIATA * ROZMIAR_BLOKU - WYSOKOSC_EKRANU)
+        monimeraY = max(0, monimeraY)
         for zdarzenie in pygame.event.get():
             if zdarzenie.type == pygame.KEYDOWN:
                 if zdarzenie.key == pygame.K_ESCAPE:
